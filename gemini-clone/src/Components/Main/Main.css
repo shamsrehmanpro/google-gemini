@@ -28,12 +28,10 @@
 }
 .main h1:first-child{
     /* adding gradient  */  
-    background-image: linear-gradient(to right, red, rgb(108, 108, 220));
+    background: linear-gradient(red, blue);
     -webkit-background-clip: text;
-    -moz-background-clip: text;
-    -ms-background-clip: text;
-    background-clip: text;
-    color: transparent;
+            background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 .cards{
     display: flex;
