@@ -12,37 +12,35 @@ const StoreContextProvider = (props) => {
   const [resultData, setResultData] = useState("");
 
   const onSent = async (prompt) => {
-
-    setResultData("")
-    setLoading(true)
-    setShowResult(true)
-    setRecentPrompt(input)
+    setResultData("");
+    setLoading(true);
+    setShowResult(true);
+    setRecentPrompt(input);
     const response = await run(input);
     const boldRegex = /\*\*(.*?)\*\*/g; // Regular expression to match text between double asterisks
-const boldText = response.replace(boldRegex, '<strong>$1</strong>');
-    setResultData(boldText)
-    setLoading(false)
-    setInput("") 
-    
+    const boldText = response.replace(boldRegex, "<strong>$1</strong>");
+    const response2 = boldText.split("*")
+    const finalResult = response2.join("br");
+    setResultData(finalResult);
+    setLoading(false);
+    setInput("");
   };
 
-      const contextValue = {
-        prevPrompts,
-        setPrevPrompts,
-        onSent,
-        setRecentPrompt,
-        recentPrompt,
-        showResult,
-        loading,
-        resultData,
-        input,
-        setInput
-      };
+  const contextValue = {
+    prevPrompts,
+    setPrevPrompts,
+    onSent,
+    setRecentPrompt,
+    recentPrompt,
+    showResult,
+    loading,
+    resultData,
+    input,
+    setInput,
+  };
 
   return (
-    <Context.Provider value={contextValue}>
-      {props.children}
-    </Context.Provider>
+    <Context.Provider value={contextValue}>{props.children}</Context.Provider>
   );
 };
 
