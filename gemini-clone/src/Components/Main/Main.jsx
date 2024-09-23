@@ -2,10 +2,11 @@ import React, { useContext } from 'react'
 import './Main.css'
 import { assets } from '../../assets/assets'
 import { Context } from '../../context/context'
+import { ReactTyped } from "react-typed";
 
 const Main = () => {
 
-  const {onSent, recentPrompt, showResult, loading, resultData, setInput, input} = useContext(Context)
+  const {onSent, recentPrompt, showResult,text, loading, resultData, setInput, input} = useContext(Context)
   return (
     <div className='main'>
       <div className="nav">
@@ -58,7 +59,7 @@ const Main = () => {
                   <hr />
                 </div>
                 :
-                <p dangerouslySetInnerHTML={{__html:resultData}}></p>
+                <ReactTyped strings={[resultData]} typeSpeed={10} loop />
             }
 
               

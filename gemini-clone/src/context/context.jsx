@@ -1,5 +1,6 @@
 import { createContext, useState } from "react";
 import run from "../config/gemini";
+import { useEffect } from "react";
 
 export const Context = createContext(null);
 
@@ -19,13 +20,15 @@ const StoreContextProvider = (props) => {
     const response = await run(input);
     const boldRegex = /\*\*(.*?)\*\*/g; // Regular expression to match text between double asterisks
     const boldText = response.replace(boldRegex, "<strong>$1</strong>");
-    const response2 = boldText.split("*")
-    const finalResult = response2.join("br");
+    const response2 = boldText.split("*");
+    const finalResult = response2.join("\n");
     setResultData(finalResult);
     setLoading(false);
     setInput("");
   };
 
+ 
+  
   const contextValue = {
     prevPrompts,
     setPrevPrompts,
