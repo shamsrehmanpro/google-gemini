@@ -17,15 +17,17 @@ const StoreContextProvider = (props) => {
     setLoading(true);
     setShowResult(true);
     setRecentPrompt(input);
+    setPrevPrompts(prev=>[...prev, input])
     const response = await run(input);
     const boldRegex = /\*\*(.*?)\*\*/g; // Regular expression to match text between double asterisks
     const boldText = response.replace(boldRegex, "<strong>$1</strong>");
-    const response2 = boldText.split("*");
-    const finalResult = response2.join("\n");
-    setResultData(finalResult);
+    const singleAsteriskRegex = /\*/g;
+    const response2 = boldText.replace(singleAsteriskRegex, "<br />");
+    setResultData(response2);
     setLoading(false);
     setInput("");
   };
+
 
  
   

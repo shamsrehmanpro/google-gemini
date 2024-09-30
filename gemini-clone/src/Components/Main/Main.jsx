@@ -3,6 +3,7 @@ import './Main.css'
 import { assets } from '../../assets/assets'
 import { Context } from '../../context/context'
 import { ReactTyped } from "react-typed";
+import TypedText from '../TypeText/TypeText';
 
 const Main = () => {
 
@@ -59,7 +60,10 @@ const Main = () => {
                   <hr />
                 </div>
                 :
-                <ReactTyped strings={[resultData]} typeSpeed={10} loop />
+                <p dangerouslySetInnerHTML={{__html: resultData}}></p>
+                // <ReactTyped strings={[resultData]} typeSpeed={40} dangerouslySetInnerHTML={{
+                //   __html: resultData,
+                // }} />
             }
 
               

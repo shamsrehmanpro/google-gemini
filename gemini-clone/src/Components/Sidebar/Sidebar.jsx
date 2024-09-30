@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import './Sidebar.css'
 import {assets} from '../../assets/assets'
+import { Context } from '../../context/context'
 
 const Sidebar = () => {
   const [collapse, setCollapse] = useState(false)
+  const {onSent, prevPrompts, setRecentPrompt} = useContext(Context)
 
   const handleClick = () => {
     setCollapse(!collapse)
@@ -18,10 +20,13 @@ const Sidebar = () => {
         </div>
        {collapse ? "" : <div className="recent">
           <p className="recent-title">Recent</p>
-          <div className="recent-entry">
-            <img src={assets.message_icon} alt="" />
-            <p>What is React ...</p>
-          </div>
+          {prevPrompts.map((item, index)=>{
+            return (<div className="recent-entry">
+              <img src={assets.message_icon} alt="" />
+              <p>{item} ...</p>
+            </div>)
+          })}
+          
         </div>} 
       </div>
 
