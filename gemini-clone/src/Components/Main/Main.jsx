@@ -60,10 +60,10 @@ const Main = () => {
                   <hr />
                 </div>
                 :
-                <p dangerouslySetInnerHTML={{__html: resultData}}></p>
-                // <ReactTyped strings={[resultData]} typeSpeed={40} dangerouslySetInnerHTML={{
-                //   __html: resultData,
-                // }} />
+                
+                <ReactTyped strings={[resultData]} typeSpeed={10} dangerouslySetInnerHTML={{
+                  __html: resultData,
+                }} />
             }
 
               
