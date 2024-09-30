@@ -5,14 +5,16 @@ import { Context } from '../../context/context'
 
 const Sidebar = () => {
   const [collapse, setCollapse] = useState(false)
-  const {onSent, prevPrompts, setRecentPrompt} = useContext(Context)
+  const {onSent,setPrevPrompts, prevPrompts, setRecentPrompt} = useContext(Context)
 
   const handleClick = () => {
     setCollapse(!collapse)
   }
 
-  const handleDelete = () => {
-    console.log('error');
+  const handleDelete = (item) => {
+    //delete item from collection on click
+    const filterArray = prevPrompts.filter((items) => items !== item )
+    setPrevPrompts(filterArray)
     
   }
   return (
@@ -27,9 +29,9 @@ const Sidebar = () => {
           <p className="recent-title">Recent</p>
           {prevPrompts.map((item, index)=>{
             return (
-            <div className="recent-entry">
+            <div className="recent-entry" key={index}>
               <img src={assets.message_icon} alt="" />
-              <p onClick={handleDelete}>{item} ...</p>
+              <p onClick={()=>handleDelete(item)}>{item.slice(0,20)} ...</p>
             </div>
             )
           })}
